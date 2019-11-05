@@ -1,6 +1,11 @@
 // BOUTAKOURT Youssef et NAZIH Amine
 //Binome 20 
-let SCORE_MAX=20;
+let SCORE_MAX=100;
+var zonetext = document.createElement("input");
+zonetext.placeholder="ENTRER LE SCORE MAX";
+zonetext.value=SCORE_MAX;
+document.body.appendChild(zonetext);             
+
 let nomJ0 = document.querySelector('#nom-0');
 let nomJ1 = document.querySelector('#nom-1');
 let score0 = document.querySelector('#score-0');
@@ -17,7 +22,25 @@ let score=[0,0];
 let current=[0,0];
 let joueurActif = true;
 let rndm = 0;
-//add
+
+
+score0.innerHTML="0";
+score1.innerHTML="0";
+curr0.innerHTML="0";
+curr1.innerHTML="0";
+score=[0,0];
+current=[0,0];
+de.style.display = "none";
+pnlJ0.classList.add('actif');
+pnlJ1.classList.remove('actif');
+joueurActif=true;
+buttPass.disabled=false;
+buttLnc.disabled=false;
+nomJ0.innerHTML="joueur 1<i class='ion-social-tux'></i>";
+nomJ1.innerHTML="joueur 2<i class='ion-social-tux'></i>";
+nomJ0.classList.remove('vainqueur');
+nomJ1.classList.remove('vainqueur');
+
 function lancer(){
     de.style.display = "block";
 
@@ -90,6 +113,8 @@ function init(){
  nomJ1.innerHTML="joueur 2<i class='ion-social-tux'></i>";
  nomJ0.classList.remove('vainqueur');
  nomJ1.classList.remove('vainqueur');
+ pnlJ0.classList.remove('vainqueur');
+ pnlJ1.classList.remove('vainqueur');
 
 
 }
@@ -137,6 +162,13 @@ function joueurSuivant(){
 function player(){
     return  pnlJ0.classList.contains("actif");
 }
+function newSc(){
+    SCORE_MAX = zonetext.value;
+    SCORE_MAX =parseInt(SCORE_MAX);
+console.log(SCORE_MAX);
+console.log(zonetext.value);
+}
 buttPass.addEventListener('click',joueurSuivant);
 buttNew.addEventListener('click',init);
 buttLnc.addEventListener('click',lancer);
+zonetext.addEventListener('keyup',newSc)
