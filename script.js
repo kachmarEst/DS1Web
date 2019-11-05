@@ -13,13 +13,13 @@ let pnlJ1 = document.querySelector('.panel-joueur-1');
 let de = document.querySelector('.de');
 let score=[0,0];
 let current=[0,0];
-let joueur1 = true ;
+let joueurActif = true;
 let rndm = 0;
 //add
 function lancer(){
     de.style.display = "block";
 
-rndm = Math.floor(Math.random()*6)+1;
+    rndm = Math.floor(Math.random()*6)+1;
 switch(rndm){
     case 1: 
              de.src="de-1.png";
@@ -43,17 +43,31 @@ switch(rndm){
     default: alert("oops something went wrong");break;
 
 }
-if(rndm != 1){
-    current[0]+=rndm;
-    curr0.innerHTML=current[0];
+joueurActif=player();
+if(joueurActif == true){
+    if(rndm != 1){
+        current[0]+=rndm;
+        curr0.innerHTML=current[0];
+    
+    }else{
+        current[0] = 0;
+        curr0.innerHTML=current[0];
 
+        joueurSuivant();
+    } 
 }else{
-    current[0] = 0;
-    curr0.innerHTML="0";
+    if(rndm != 1){
+        current[1]+=rndm;
+        curr1.innerHTML=current[1];
+    
+    }else{
+        current[1] = 0;
+        curr1.innerHTML=current[1];
+        joueurSuivant();
 
-    pnlJ1.classList.add('actif');
-    pnlJ0.classList.remove('actif');
-} 
+    } 
+}
+
 
 }
 function init(){
@@ -66,7 +80,39 @@ function init(){
  de.style.display = "none";
  pnlJ0.classList.add('actif');
  pnlJ1.classList.remove('actif');
+ joueurActif=true;
+}
+
+function joueurSuivant(){
+    joueurActif=player();
+
+    if(joueurActif == true){
+        score[0]+=current[0];
+        score0.innerHTML= score[0];
+        de.style.display = "none";
+        curr0.innerHTML="0";
+    
+        pnlJ1.classList.add('actif');
+        pnlJ0.classList.remove('actif');
+        current=[0,0];
+    }else{
+        score[1]+=current[1];
+        score1.innerHTML= score[1];
+        de.style.display = "none";
+        curr1.innerHTML="0";
+    
+        pnlJ0.classList.add('actif');
+        pnlJ1.classList.remove('actif');
+        current=[0,0];
+
+    }
+   
 
 }
+
+function player(){
+    return  pnlJ0.classList.contains("actif");
+}
+buttPass.addEventListener('click',joueurSuivant);
 buttNew.addEventListener('click',init);
 buttLnc.addEventListener('click',lancer);
