@@ -14,11 +14,53 @@ let de = document.querySelector('.de');
 let score=[0,0];
 let current=[0,0];
 let joueur1 = true ;
+let rndm = 0;
+//add
+function lancer(){
+    de.style.display = "block";
+
+rndm = Math.floor(Math.random()*6)+1;
+switch(rndm){
+    case 1: 
+             de.src="de-1.png";
+
+             break;
+    case 2: 
+            de.src="de-2.png"; 
+            break;
+    case 3: 
+            de.src="de-3.png"; 
+            break;
+    case 4: 
+            de.src="de-4.png";
+             break;
+    case 5: 
+            de.src="de-5.png";
+             break;
+    case 6: 
+            de.src="de-6.png";
+             break;
+    default: alert("oops something went wrong");break;
+
+}
+if(rndm != 1){
+    current[0]+=rndm;
+    curr0.innerHTML=current[0];
+
+}else{
+    current[0] = 0;
+    curr0.innerHTML="0";
+
+    pnlJ1.classList.add('actif');
+    pnlJ0.classList.remove('actif');
+} 
+
+}
 function init(){
-    score0.innerHTML="";
-    score1.innerHTML="";
-    curr0.innerHTML="";
-    curr1.innerHTML="";
+    score0.innerHTML="0";
+    score1.innerHTML="0";
+    curr0.innerHTML="0";
+    curr1.innerHTML="0";
     score=[0,0];
     current=[0,0];
  de.style.display = "none";
@@ -26,3 +68,5 @@ function init(){
  pnlJ1.classList.remove('actif');
 
 }
+buttNew.addEventListener('click',init);
+buttLnc.addEventListener('click',lancer);
