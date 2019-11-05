@@ -1,4 +1,6 @@
-let SCORE_MAX=100;
+// BOUTAKOURT Youssef et NAZIH Amine
+//Binome 20 
+let SCORE_MAX=20;
 let nomJ0 = document.querySelector('#nom-0');
 let nomJ1 = document.querySelector('#nom-1');
 let score0 = document.querySelector('#score-0');
@@ -48,6 +50,7 @@ if(joueurActif == true){
     if(rndm != 1){
         current[0]+=rndm;
         curr0.innerHTML=current[0];
+
     
     }else{
         current[0] = 0;
@@ -81,6 +84,14 @@ function init(){
  pnlJ0.classList.add('actif');
  pnlJ1.classList.remove('actif');
  joueurActif=true;
+ buttPass.disabled=false;
+ buttLnc.disabled=false;
+ nomJ0.innerHTML="joueur 1<i class='ion-social-tux'></i>";
+ nomJ1.innerHTML="joueur 2<i class='ion-social-tux'></i>";
+ nomJ0.classList.remove('vainqueur');
+ nomJ1.classList.remove('vainqueur');
+
+
 }
 
 function joueurSuivant(){
@@ -91,20 +102,33 @@ function joueurSuivant(){
         score0.innerHTML= score[0];
         de.style.display = "none";
         curr0.innerHTML="0";
-    
+        if(score[0]>=SCORE_MAX){
+            nomJ0.innerHTML="VAINQUEUR!";
+            buttPass.disabled=true;
+            buttLnc.disabled=true;
+            pnlJ0.classList.add('vainqueur');
+            return;
+        }
         pnlJ1.classList.add('actif');
         pnlJ0.classList.remove('actif');
         current=[0,0];
+       
     }else{
         score[1]+=current[1];
         score1.innerHTML= score[1];
         de.style.display = "none";
         curr1.innerHTML="0";
-    
+        if(score[1]>=SCORE_MAX){
+            nomJ1.innerHTML="VAINQUEUR!";
+            buttPass.disabled=true;
+            buttLnc.disabled=true;
+            pnlJ1.classList.add('vainqueur');
+            return;
+        }
         pnlJ0.classList.add('actif');
         pnlJ1.classList.remove('actif');
         current=[0,0];
-
+        
     }
    
 
