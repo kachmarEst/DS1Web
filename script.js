@@ -22,7 +22,7 @@ let score=[0,0];
 let current=[0,0];
 let joueurActif = true;
 let rndm = 0;
-
+let bonus= [0,0];
 
 score0.innerHTML="0";
 score1.innerHTML="0";
@@ -73,7 +73,16 @@ if(joueurActif == true){
     if(rndm != 1){
         current[0]+=rndm;
         curr0.innerHTML=current[0];
+        bonus[1]=rndm;
+        if(bonus[1] == 6 && bonus[0] == 6){
+            current[0] = 0;
+            score[0]=0;
+            curr0.innerHTML="0";
+            score0.innerHTML="0";
+            joueurSuivant();
 
+        }
+        bonus[0]=bonus[1];
     
     }else{
         current[0] = 0;
@@ -85,6 +94,16 @@ if(joueurActif == true){
     if(rndm != 1){
         current[1]+=rndm;
         curr1.innerHTML=current[1];
+        bonus[1]=rndm;
+        if(bonus[1] == 6 && bonus[0] == 6){
+            current[1] = 0;
+            score[1]=0;
+            curr1.innerHTML="0";
+            score1.innerHTML="0";
+            joueurSuivant();
+
+        }
+        bonus[0]=bonus[1];
     
     }else{
         current[1] = 0;
@@ -101,6 +120,7 @@ function init(){
     score1.innerHTML="0";
     curr0.innerHTML="0";
     curr1.innerHTML="0";
+    bonus= [0,0];
     score=[0,0];
     current=[0,0];
  de.style.display = "none";
@@ -121,7 +141,7 @@ function init(){
 
 function joueurSuivant(){
     joueurActif=player();
-
+    bonus= [0,0];
     if(joueurActif == true){
         score[0]+=current[0];
         score0.innerHTML= score[0];
@@ -170,4 +190,4 @@ function newSc(){
 buttPass.addEventListener('click',joueurSuivant);
 buttNew.addEventListener('click',init);
 buttLnc.addEventListener('click',lancer);
-zonetext.addEventListener('keyup',newSc)
+zonetext.addEventListener('keyup',newSc);
