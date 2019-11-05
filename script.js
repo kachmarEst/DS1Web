@@ -165,8 +165,7 @@ function player(){
 function newSc(){
     SCORE_MAX = zonetext.value;
     SCORE_MAX =parseInt(SCORE_MAX);
-console.log(SCORE_MAX);
-console.log(zonetext.value);
+
 }
 buttPass.addEventListener('click',joueurSuivant);
 buttNew.addEventListener('click',init);
